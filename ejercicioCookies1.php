@@ -8,13 +8,16 @@
 if(isset($_POST["nombreUsuario"])){
     $nombre = $_POST["nombreUsuario"];
     $numeroVisitas = $_COOKIE["visitas"];
-    echo "<p>Hola " . htmlspecialchars($nombre) . ", has visitado esta página $numeroVisitas veces.</p>";
-    setcookie("visitas", $numeroVisitas, time() + 30*24*60*60);
+    echo "Hola " . htmlspecialchars($nombre) . ", has visitado esta página $numeroVisitas veces." . "<br>";
+    setcookie("usuario_" .$nombre, $numeroVisitas, time() + 30*24*60*60);
+    $hayPersonas = false;
     foreach($_COOKIE as $nombre => $valor){
-    if($nombre != "visitas" && $nombre != "ult_visita"){
-        echo "<p>Usuario: " . htmlspecialchars($nombre) . ", Número de visitas: " . htmlspecialchars($valor) . "</p>";
+    if(strpos($nombre, "usuario_") === 0){
+        $hayPersonas = true;
+        $usuario = substr($nombre, strlen("usuario_"));
+        echo "Usuario: " . htmlspecialchars($usuario) . ", Número de visitas: " . htmlspecialchars($valor). "<br>";
         }
-    }
+    } 
 }
 
 
