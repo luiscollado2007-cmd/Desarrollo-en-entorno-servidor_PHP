@@ -17,7 +17,8 @@ if(isset($_POST["nombreUsuario"])){
         $usuario = substr($nombre, strlen("usuario_"));
         echo "Usuario: " . htmlspecialchars($usuario) . ", Número de visitas: " . htmlspecialchars($valor). "<br>";
         }
-    } 
+    }
+    print_r($_COOKIE); 
 }
 
 
